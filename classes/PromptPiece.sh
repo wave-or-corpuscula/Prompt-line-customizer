@@ -26,7 +26,9 @@ function changePiece() {
 
     if [[ -z "$3" ]] 
     then
-        colorEcho No new value proveded. "$RED"
+        errorEcho "No new value proveded."
+        warningEcho "No new value proveded."
+        successEcho "No new value proveded."
         exit
     fi
 
