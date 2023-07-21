@@ -1,0 +1,1 @@
+# This script will help to to customize your terminal prompt line
