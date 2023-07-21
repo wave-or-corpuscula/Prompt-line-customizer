@@ -18,16 +18,13 @@ function colorEcho() {
 }
 
 function errorEcho() {
-    local text=${1:-""}
-    echo -e "\033[${RESET};${RED}m${text}\033[00m"
+    colorEcho "$1" "$RED"
 }
 
 function warningEcho() {
-    local text=${1:-""}
-    echo -e "\033[${RESET};${YELLOW}m${text}\033[00m"
+    colorEcho "$1" "$YELLOW"
 }
 
 function successEcho() {
-    local text=${1:-""}
-    echo -e "\033[${RESET};${GREEN}m${text}\033[00m"
+    colorEcho "$1" "$GREEN"
 }

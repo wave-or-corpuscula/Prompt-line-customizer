@@ -21,36 +21,34 @@ function getPiece() {
 }
 
 function changePiece() {
-    local -n obj=$1
-    local flag=$2
+    local -n obj=$1; shift
 
-    if [[ -z "$3" ]] 
-    then
-        errorEcho "No new value proveded."
-        warningEcho "No new value proveded."
-        successEcho "No new value proveded."
-        exit
-    fi
-
-    case "$flag" in
-        '-tx'|'--text')
-            echo Text change
-            if [[ -z "$3" ]] 
-            then
-                echo No text provided!!!
-                exit
-            fi
-            obj["text"]="$3"
-            ;;
-        '-c'|'--color')
-            echo Color change
-            ;;
-        '-s'|'--style')
-            echo Style change
-            ;;
-        '-ty'|'--type')
-            ;;
-    esac
+    while [[ $# -gt 0 ]]; do
+        local flag=$1
+        if [[ -z "$2" || "$2" == -* ]] 
+        then
+            errorEcho "No new value proveded."; shift; return 1
+        fi
+        case "$flag" in
+            '-tx'|'--text')
+                obj["text"]="$2"; shift; shift; continue
+                ;;
+            '-c'|'--color')
+                obj["color"]="$2"; shift; shift; continue
+                ;;
+            '-s'|'--style')
+                obj["style"]="$2"; shift; shift; continue
+                ;;
+            '-ty'|'--type')
+                if [[ -z "$3" || "$3" == -* ]]
+                then
+                    errorEcho "No new text proveded."; shift; shift; return 1
+                fi
+                obj["type"]="$2"
+                obj["text"]="$3"; shift; shift; shift; continue
+                ;;
+        esac
+    done
 }
 
 
@@ -60,8 +58,22 @@ PromptPiece piece test_text "$GREEN"
 print_piece="$( getPiece piece )"
 echo "${print_piece@P}"
 
-changePiece piece --text
-changePiece piece --text new_text
+changePiece piece -tx new_text
 
 print_piece="$( getPiece piece )"
 echo "${print_piece@P}"
+
+# changePiece piece -c "$PURPLE"
+
+# print_piece="$( getPiece piece )"
+# echo "${print_piece@P}"
+
+# changePiece piece -s "$BOLD"
+
+# print_piece="$( getPiece piece )"
+# echo "${print_piece@P}"
+
+# changePiece piece -ty "$VAR"
+
+# print_piece="$( getPiece piece )"
+# echo "${print_piece@P}"
