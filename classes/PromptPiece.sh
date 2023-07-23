@@ -5,6 +5,7 @@ source "$(dirname $0)"/../functions.sh
 
 
 function PromptPiece() {
+    declare -gA "$1"
     local -n obj=$1
 
     local text_=$2
@@ -30,50 +31,23 @@ function changePiece() {
             errorEcho "No new value proveded."; shift; return 1
         fi
         case "$flag" in
-            '-tx'|'--text')
-                obj["text"]="$2"; shift; shift; continue
+            '-t'|'--text')
+                obj["text"]="$2"; shift; shift;
                 ;;
             '-c'|'--color')
-                obj["color"]="$2"; shift; shift; continue
+                obj["color"]="$2"; shift; shift;
                 ;;
             '-s'|'--style')
-                obj["style"]="$2"; shift; shift; continue
+                obj["style"]="$2"; shift; shift;
                 ;;
-            '-ty'|'--type')
+            '-T'|'--type')
                 if [[ -z "$3" || "$3" == -* ]]
                 then
-                    errorEcho "No new text proveded."; shift; shift; return 1
+                    obj["type"]="$2"; shift; shift; continue
                 fi
                 obj["type"]="$2"
-                obj["text"]="$3"; shift; shift; shift; continue
+                obj["text"]="$3"; shift; shift; shift
                 ;;
         esac
     done
 }
-
-
-declare -A piece
-PromptPiece piece test_text "$GREEN"
-
-print_piece="$( getPiece piece )"
-echo "${print_piece@P}"
-
-changePiece piece -tx new_text
-
-print_piece="$( getPiece piece )"
-echo "${print_piece@P}"
-
-# changePiece piece -c "$PURPLE"
-
-# print_piece="$( getPiece piece )"
-# echo "${print_piece@P}"
-
-# changePiece piece -s "$BOLD"
-
-# print_piece="$( getPiece piece )"
-# echo "${print_piece@P}"
-
-# changePiece piece -ty "$VAR"
-
-# print_piece="$( getPiece piece )"
-# echo "${print_piece@P}"
