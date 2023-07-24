@@ -28,3 +28,19 @@ function warningEcho() {
 function successEcho() {
     colorEcho "$1" "$GREEN"
 }
+
+function swapArray() {
+    local -n "arr_for_swap"="$1"
+    local fir_ind=$2
+    local sec_ind=$3
+
+    local temp="${arr_for_swap[$fir_ind]}"
+    # echo "$temp"
+    arr_for_swap["$fir_ind"]="${arr_for_swap[$sec_ind]}"
+    arr_for_swap["$sec_ind"]=$temp
+}
+
+
+# arr=("Hello" "World" "I am" "George")
+# swapArray arr "1" "2"
+# echo "${arr[@]}"

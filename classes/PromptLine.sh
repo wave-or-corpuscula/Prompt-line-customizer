@@ -40,6 +40,11 @@ function changePiece() {
 ...
 }
 
+function swapPieces() {
+    local -n "obj"="$1"
+    swapArray "${obj["pieces"]}" "$2" "$3"
+}
+
 # Returns full prompt line
 function getLine() {
     local -n "obj"="$1"
@@ -66,4 +71,13 @@ function getLineList() {
 }
 
 
-# PromptLine p
+PromptLine p
+
+addPiece p "1" "$GREEN" "$BOLD"
+addPiece p "2" "$RED" "$BOLD"
+addPiece p "3" "$YELLOW" "$BOLD"
+addPiece p "4" "$PURPLE" "$BOLD"
+
+swapPieces p 0 2
+
+getLine p

@@ -18,9 +18,9 @@ addPiece test_p "все" "$CYAN" "$BOLD"
 addPiece test_p "происходящее" "$WHITE" "$BOLD"
 addPiece test_p "агась" "$WHITE" "$BOLD"
 
-getLine test_p
+# getLine test_p
 
-# getLineList p
+getLineList test_p
 
 PromptLine test_p1
 
@@ -30,4 +30,6 @@ addPiece test_p1 "it" "$YELLOW" "$ITALIC"
 addPiece test_p1 "works" "$RED" "$ITALIC"
 addPiece test_p1 "угусь" "$YELLOW" "$ITALIC"
 
-getLine test_p1
+# getLine test_p1
+
+getLineList test_p1

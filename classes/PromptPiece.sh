@@ -17,12 +17,12 @@ function PromptPiece() {
 }
 
 function getPiece() {
-    local -n obj=$1
+    local -n "obj"="$1"
     promptColorEcho "${obj["text"]}" "${obj["color"]}" "${obj["style"]}" 
 }
 
 function changePiece() {
-    local -n obj=$1; shift
+    local -n "obj"="$1"; shift
 
     while [[ $# -gt 0 ]]; do
         local flag=$1
