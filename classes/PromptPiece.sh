@@ -29,7 +29,7 @@ function PromptPiece() {
 function validate() {
     local -n "obj"="$1"
 
-    if [[ "${obj["type"]}" == "$TEXT" && "${obj["text"]}" == *"\\"* ]]
+    if [[ "${obj["type"]}" != "$SPEC_SYMB" && "${obj["text"]}" == *"\\"* ]]
     then
         return 1
     fi
