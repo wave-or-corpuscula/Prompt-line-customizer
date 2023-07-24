@@ -84,7 +84,7 @@ addPiece p "2" "$RED" "$BOLD"
 addPiece p "3" "$YELLOW" "$BOLD"
 addPiece p "4" "$PURPLE" "$BOLD"
 
-# swapPieces p 0 2
+swapPieces p 0 3
 
 getLine p
 
