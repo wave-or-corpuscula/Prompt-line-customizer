@@ -31,11 +31,7 @@ function addPiece() {
     pieces+=("$piece_name")
 }
 
-function countPieces() {
-...
-}
-
-# Change piece by provided index
+# Change piece parameters by provided index
 function changeLinePiece() {
     local -n "obj"="$1"
     local -n "pieces"="${obj["pieces"]}"
@@ -43,7 +39,6 @@ function changeLinePiece() {
     shift; shift
 
     changePiece "${pieces[$change_ind]}" "$@"
-
 }
 
 function swapPieces() {
@@ -51,7 +46,7 @@ function swapPieces() {
     swapArray "${obj["pieces"]}" "$2" "$3"
 }
 
-# Returns full prompt line
+# Prints full prompt line
 function getLine() {
     local -n "obj"="$1"
     local -n pices="${obj["pieces"]}"
@@ -64,9 +59,10 @@ function getLine() {
     echo
 }
 
+# Prints prompt line pieces apart
 function getLineList() {
     local -n "obj"="$1"
-    local -n pieces="${obj["pieces"]}"
+    local -n "pieces"="${obj["pieces"]}"
     
     for ((i=0; i<${#pieces[@]}; i++))
     do 
@@ -75,19 +71,3 @@ function getLineList() {
     done
     echo
 }
-
-
-PromptLine p
-
-addPiece p "1" "$GREEN" "$BOLD"
-addPiece p "2" "$RED" "$BOLD"
-addPiece p "3" "$YELLOW" "$BOLD"
-addPiece p "4" "$PURPLE" "$BOLD"
-
-swapPieces p 0 3
-
-getLine p
-
-changeLinePiece p 3 -t "new_text" -c "$WHITE"
-
-getLine p

@@ -22,6 +22,14 @@ addPiece test_p "агась" "$WHITE" "$BOLD"
 
 getLineList test_p
 
+swapPieces p 0 3
+
+getLine p
+
+changeLinePiece p 3 -t "new_text" -c "$WHITE"
+
+getLine p
+
 PromptLine test_p1
 
 addPiece test_p1 "Check" "$GREEN" "$ITALIC"
