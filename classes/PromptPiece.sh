@@ -5,15 +5,35 @@ source "$(dirname $0)"/../functions.sh
 
 
 function PromptPiece() {
-    declare -gA "$1"
-    local -n obj=$1
+    local objn=$1
+    local -n obj=$objn
 
     local text_=$2
     local color_=${3:-"$WHITE"}
     local style_=${4:-"$RESET"}
     local type_=${5:-"$TEXT"}
 
+    declare -gA "$1"
     obj=( ["text"]="$text_" ["color"]="$color_" ["style"]="$style_" ["type"]="$type_" )
+
+    
+    validate "$objn"
+    if [[ $? == 1 ]]
+    then
+        unset obj
+        return 1
+    fi
+    return 0
+}
+
+function validate() {
+    local -n "obj"="$1"
+
+    if [[ "${obj["type"]}" == "$TEXT" && "${obj["text"]}" == *"\\"* ]]
+    then
+        return 1
+    fi
+    return 0
 }
 
 function getPiece() {
@@ -51,3 +71,21 @@ function changePiece() {
         esac
     done
 }
+
+
+main() {
+    PromptPiece p "\u" "$RED" "$ITALIC" "$TEXT"
+    if [[ $? == 0 ]]
+    then
+        print_prompt=$( getPiece p )
+        echo "${print_prompt@P}"
+    fi
+}
+
+
+
+
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi
