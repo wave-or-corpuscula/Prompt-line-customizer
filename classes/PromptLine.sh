@@ -37,7 +37,13 @@ function countPieces() {
 
 # Change piece by provided index
 function changePiece() {
-...
+    local -n "obj"="$1"
+    local -n pieces="${obj["pieces"]}"
+    local chnge_ind=$2
+    shift; shift
+
+    echo "$@"
+
 }
 
 function swapPieces() {
@@ -60,11 +66,11 @@ function getLine() {
 
 function getLineList() {
     local -n "obj"="$1"
-    local -n pices="${obj["pieces"]}"
+    local -n pieces="${obj["pieces"]}"
     
-    for ((i=0; i<${#pices[@]}; i++))
+    for ((i=0; i<${#pieces[@]}; i++))
     do 
-        print_piece="$( getPiece "${pices[$i]}" )"
+        print_piece="$( getPiece "${pieces[$i]}" )"
         printf "%d. %s\n" "$((i + 1))" "${print_piece@P}"
     done
     echo
@@ -81,3 +87,5 @@ addPiece p "4" "$PURPLE" "$BOLD"
 swapPieces p 0 2
 
 getLine p
+
+changePiece p 1
