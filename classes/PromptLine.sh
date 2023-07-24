@@ -36,13 +36,13 @@ function countPieces() {
 }
 
 # Change piece by provided index
-function changePiece() {
+function changeLinePiece() {
     local -n "obj"="$1"
-    local -n pieces="${obj["pieces"]}"
-    local chnge_ind=$2
+    local -n "pieces"="${obj["pieces"]}"
+    local change_ind=$2
     shift; shift
 
-    echo "$@"
+    changePiece "${pieces[$change_ind]}" "$@"
 
 }
 
@@ -84,8 +84,10 @@ addPiece p "2" "$RED" "$BOLD"
 addPiece p "3" "$YELLOW" "$BOLD"
 addPiece p "4" "$PURPLE" "$BOLD"
 
-swapPieces p 0 2
+# swapPieces p 0 2
 
 getLine p
 
-changePiece p 1
+changeLinePiece p 3 -t "new_text" -c "$WHITE"
+
+getLine p
