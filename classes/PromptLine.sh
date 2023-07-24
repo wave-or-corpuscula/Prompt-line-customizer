@@ -8,15 +8,16 @@ source "$DIR_NAME"/../functions.sh
 
 
 function PromptLine() {
-    declare -gA "$1"
-    local -n obj=$1
-    declare -ga pieces_values
-    obj["pieces"]=pieces_values
+    local objn=$1
+    declare -gA "$objn"
+    local -n obj=$objn
+    declare -ga "pieces_values_of_$objn"
+    obj["pieces"]="pieces_values_of_$objn"
 }
 
 # Adds piece to the end of prompt line
 function addPiece() {
-    local -n obj=$1
+    local -n "obj"="$1"
 
     local text_=$2
     local color_=${3:-"$WHITE"}
@@ -41,7 +42,7 @@ function changePiece() {
 
 # Returns full prompt line
 function getLine() {
-    local -n obj=$1
+    local -n "obj"="$1"
     local -n pices="${obj["pieces"]}"
     
     for piece_name in "${pices[@]}"
@@ -52,13 +53,17 @@ function getLine() {
     echo
 }
 
+function getLineList() {
+    local -n "obj"="$1"
+    local -n pices="${obj["pieces"]}"
+    
+    for ((i=0; i<${#pices[@]}; i++))
+    do 
+        print_piece="$( getPiece "${pices[$i]}" )"
+        printf "%d. %s\n" "$((i + 1))" "${print_piece@P}"
+    done
+    echo
+}
 
-PromptLine p
 
-addPiece p "Я" "$GREEN" "$BOLD"
-addPiece p "ебал" "$RED" "$BOLD"
-addPiece p "врот" "$YELLOW" "$BOLD"
-addPiece p "эту" "$PURPLE" "$BOLD"
-addPiece p "хуету" "$CYAN" "$BOLD"
-
-getLine p
+# PromptLine p
