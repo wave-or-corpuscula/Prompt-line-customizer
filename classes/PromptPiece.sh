@@ -74,7 +74,7 @@ function changePiece() {
 
 
 main() {
-    PromptPiece p "\u" "$RED" "$ITALIC" "$TEXT"
+    PromptPiece p "\u" "$RED" "$ITALIC" "$SPEC_SYMB"
     if [[ $? == 0 ]]
     then
         print_prompt=$( getPiece p )
