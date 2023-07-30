@@ -9,10 +9,9 @@ source "$DIR_NAME"/classes/PromptLine.sh
 
 function main() {
     clear
-    echo $DIR_NAME
     while :
     do  
-        printf "Select an option:\n1.Display current promt line\n2.Create new promt line\n3.Change promt line\n4.Check my savings\n5.Exit\n"
+        printf "Select an option:\n1.Display current promt line\n2.Create new promt line\n3.Change promt line\n4.Open my lines\n5.Exit\n"
         printf 'Enter your choice: '
         read -r option
 

@@ -18,26 +18,6 @@ addPiece test_p "все" "$CYAN" "$BOLD"
 addPiece test_p "происходящее" "$WHITE" "$BOLD"
 addPiece test_p "агась" "$WHITE" "$BOLD"
 
-# getLine test_p
-
-getLineList test_p
-
-swapPieces p 0 3
-
 getLine test_p
 
-changeLinePiece p 3 -t "new_text" -c "$WHITE"
-
-getLine p
-
-PromptLine test_p1
-
-addPiece test_p1 "Check" "$GREEN" "$ITALIC"
-addPiece test_p1 "if" "$PURPLE" "$ITALIC"
-addPiece test_p1 "it" "$YELLOW" "$ITALIC"
-addPiece test_p1 "works" "$RED" "$ITALIC"
-addPiece test_p1 "угусь" "$YELLOW" "$ITALIC"
-
-# getLine test_p1
-
-getLineList test_p1
+saveLine test_p file_name

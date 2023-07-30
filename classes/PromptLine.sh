@@ -9,10 +9,12 @@ source "$DIR_NAME"/../functions.sh
 
 function PromptLine() {
     local objn=$1
+    local prompt_name=${2:-"pieces_values_of_$objn"}
     declare -gA "$objn"
     local -n obj=$objn
     declare -ga "pieces_values_of_$objn"
     obj["pieces"]="pieces_values_of_$objn"
+    obj["name"]=$prompt_name
 }
 
 # Adds piece to the end of prompt line
