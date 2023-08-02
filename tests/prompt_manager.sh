@@ -29,14 +29,10 @@ addPiece test_2 "2" "$RED" "$BOLD"
 
 addLine ins test_2
 
-addLine ins test_1
 
-addLine ins test_2
-# PromptLine test_3
+addPiece test_3 "TestLine" "$CYAN" "$BOLD"
+addPiece test_3 "3" "$RED" "$BOLD"
 
-# addPiece test_3 "TestLine" "$CYAN" "$BOLD"
-# addPiece test_3 "3" "$RED" "$BOLD"
-
-# addLine ins test_3
+addLine ins test_3
 
 printLines ins
