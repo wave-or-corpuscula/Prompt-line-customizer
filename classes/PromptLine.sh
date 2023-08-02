@@ -12,14 +12,17 @@ function PromptLine() {
     local prompt_name=${2:-"pieces_values_of_$objn"}
     declare -gA "$objn"
     local -n obj=$objn
-    declare -ga "pieces_values_of_$objn"
-    obj["pieces"]="pieces_values_of_$objn"
+    local pieces="pieces_of_$objn"
+    declare -ga "$pieces"
+
+    obj["pieces"]="$pieces"
     obj["name"]=$prompt_name
 }
 
 # Adds piece to the end of prompt line
 function addPiece() {
-    local -n "obj"="$1"
+    local objn=$1
+    local -n "obj"="$objn"
 
     local text_=$2
     local color_=${3:-"$WHITE"}
@@ -27,7 +30,7 @@ function addPiece() {
     local type_=${5:-"$TEXT"}
     local -n pieces="${obj["pieces"]}"
 
-    piece_name="piece${#pieces[@]}"
+    local piece_name="piece${#pieces[@]}_of_$objn"
     PromptPiece "$piece_name" "$text_" "$color_" "$style_" "$type_"
 
     pieces+=("$piece_name")
@@ -55,6 +58,7 @@ function getLine() {
     
     for piece_name in "${pices[@]}"
     do 
+        # echo "$piece_name"
         print_piece="$( getPiece "$piece_name" )"
         echo -n "${print_piece@P}"
     done

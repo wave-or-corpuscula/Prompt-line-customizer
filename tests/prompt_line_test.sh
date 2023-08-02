@@ -22,13 +22,13 @@ addPiece test_p "агась" "$WHITE" "$BOLD"
 
 getLineList test_p
 
-swapPieces p 0 3
+# swapPieces test_p 0 3
 
 getLine test_p
 
-changeLinePiece p 3 -t "new_text" -c "$WHITE"
+# changeLinePiece test_p 3 -t "new_text" -c "$WHITE"
 
-getLine p
+getLine test_p
 
 PromptLine test_p1
 
@@ -41,3 +41,5 @@ addPiece test_p1 "угусь" "$YELLOW" "$ITALIC"
 # getLine test_p1
 
 getLineList test_p1
+
+getLineList test_p
