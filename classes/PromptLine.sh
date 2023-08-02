@@ -58,7 +58,6 @@ function getLine() {
     
     for piece_name in "${pices[@]}"
     do 
-        # echo "$piece_name"
         print_piece="$( getPiece "$piece_name" )"
         echo -n "${print_piece@P}"
     done

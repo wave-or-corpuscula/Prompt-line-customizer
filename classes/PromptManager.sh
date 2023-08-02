@@ -24,11 +24,6 @@ function addLine() {
     local -n lines="${obj["lines"]}"
     local line=$2
 
-    # local line_name="${#lines[@]}_line_of_$objn"
-    # local line_name="${#lines[@]}_line_of_$objn"
-    # declare -n "$line_name"="$line"
-    # echo "$line_name"
-
     lines+=("$line")
 }
 
@@ -39,7 +34,6 @@ function printLines() {
 
     for line_name in "${lines[@]}"
     do
-        # echo "$line_name"
         getLine "$line_name"
     done
 }
