@@ -2,9 +2,9 @@
 
 DIR_NAME=$(dirname "$0")
 
-source "$DIR_NAME"/../classes/PromptPiece.sh
-source "$DIR_NAME"/../constants.sh
-source "$DIR_NAME"/../functions.sh
+source "$DIR_NAME"/classes/PromptPiece.sh
+source "$DIR_NAME"/constants.sh
+source "$DIR_NAME"/functions.sh
 
 
 function PromptLine() {
