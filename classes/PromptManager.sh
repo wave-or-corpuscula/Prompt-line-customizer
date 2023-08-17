@@ -37,3 +37,18 @@ function printLines() {
         getLine "$line_name"
     done
 }
+
+function getLinesArr() {
+    local objn=$1
+    local -n "obj"="$objn"
+    local -n "lines"="${obj["lines"]}"
+    declare -ga return_lines_arr
+
+    for line_name in "${lines[@]}"
+    do
+        line=$(getLine "$line_name")
+        # echo "$line ofo"
+        return_lines_arr+=("$line")
+    done
+    echo return_lines_arr
+}

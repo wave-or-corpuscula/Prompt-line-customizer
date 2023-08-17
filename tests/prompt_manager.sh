@@ -16,7 +16,6 @@ PromptLine test_1
 addPiece test_1 "TestLine" "$GREEN" "$BOLD"
 addPiece test_1 "1" "$RED" "$BOLD"
 
-addLine ins test_1
 
 
 PromptLine test_2
@@ -25,14 +24,32 @@ addPiece test_2 "Test" "$YELLOW" "$BOLD"
 addPiece test_2 "Line" "$WHITE" "$BOLD"
 addPiece test_2 "2" "$RED" "$BOLD"
 
-addLine ins test_2
-
 
 PromptLine test_3
 
 addPiece test_3 "TestLine" "$CYAN" "$BOLD"
 addPiece test_3 "3" "$RED" "$BOLD"
 
+addLine ins test_1
+addLine ins test_2
 addLine ins test_3
 
 printLines ins
+
+
+function lineExists() {
+    local -n "line"="$1"
+    if [[ "${line["pieces"]}" != "" ]]
+    then
+        return 0
+    else
+        return 1
+    fi
+}
+
+if $( lineExists test_3 )
+then
+    echo Exists
+else 
+    echo NotExists
+fi

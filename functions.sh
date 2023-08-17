@@ -35,12 +35,17 @@ function swapArray() {
     local sec_ind=$3
 
     local temp="${arr_for_swap[$fir_ind]}"
-    # echo "$temp"
     arr_for_swap["$fir_ind"]="${arr_for_swap[$sec_ind]}"
     arr_for_swap["$sec_ind"]=$temp
 }
 
-
-# arr=("Hello" "World" "I am" "George")
-# swapArray arr "1" "2"
-# echo "${arr[@]}"
+# Checks if line with provided name exists
+function lineExists() {
+    local -n "line"="$1"
+    if [[ "${line["pieces"]}" != "" ]]
+    then
+        return 0
+    else
+        return 1
+    fi
+}

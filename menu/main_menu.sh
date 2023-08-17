@@ -6,8 +6,10 @@ source "$DIR_NAME"/functions.sh
 source "$DIR_NAME"/classes/PromptPiece.sh
 source "$DIR_NAME"/classes/PromptLine.sh
 
+source "$DIR_NAME"/menu/create_prompt_line/create_prompt_line.sh
 
-function main() {
+
+function main_menu() {
     clear
     while :
     do  
@@ -19,15 +21,15 @@ function main() {
 
         "1")
             clear
-            displayCurrentPromt
+            displayCurrentPrompt
             ;;
         "2")
             clear
-            createPromtLine
+            createPromptLine
             ;;
         "3")
             clear
-            changePromtLine
+            changePromptLine
             ;;
         "4")
             clear
