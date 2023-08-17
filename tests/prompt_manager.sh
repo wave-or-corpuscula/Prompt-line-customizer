@@ -37,19 +37,13 @@ addLine ins test_3
 printLines ins
 
 
-function lineExists() {
-    local -n "line"="$1"
-    if [[ "${line["pieces"]}" != "" ]]
-    then
-        return 0
-    else
-        return 1
-    fi
-}
+# line_number=1
+# while lineExists test_$line_number
+# do
+#     line_number=$((line_number+1))
+# done
 
-if $( lineExists test_3 )
-then
-    echo Exists
-else 
-    echo NotExists
-fi
+# echo $line_number
+
+# read text
+# echo "$text"

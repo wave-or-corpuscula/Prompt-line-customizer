@@ -34,6 +34,8 @@ function addPiece() {
     PromptPiece "$piece_name" "$text_" "$color_" "$style_" "$type_"
 
     pieces+=("$piece_name")
+
+    return "$?"
 }
 
 # Change piece parameters by provided index

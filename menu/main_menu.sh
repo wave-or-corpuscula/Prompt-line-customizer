@@ -49,6 +49,6 @@ function main_menu() {
 }
 
 
-function displayCurrentPromt() {
+function displayCurrentPrompt() {
     printf "This is your current promt line:\n%s\nWanna spice it up?\n\n" "${PS1@P}"
 }

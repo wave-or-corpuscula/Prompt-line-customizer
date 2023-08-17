@@ -29,6 +29,10 @@ function successEcho() {
     colorEcho "$1" "$GREEN"
 }
 
+# function colorsChoice() {
+    
+# }
+
 function swapArray() {
     local -n "arr_for_swap"="$1"
     local fir_ind=$2
