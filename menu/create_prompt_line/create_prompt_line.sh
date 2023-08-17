@@ -21,8 +21,7 @@ function createPromptLine {
     while :
     do  
 
-        printf "Created prompt line: "
-        getLine line_$line_number
+        printf "Created prompt line: %s\n" "$(getLine "line_$line_number")"
 
         printf "Select an option: \n1.Add text\n2.Add special symbol\n3.Add enveronment variable\n4.Change line\n5.Save line\n6.Back\n\n"
         printf 'Enter your choice: '
@@ -67,28 +66,16 @@ function addSpecialSymbol() {
     local symbol=""
     local choice_color=""
     local choice_style=""
-    local text=""
     
     while :
     do
-        
-        # for ((i=0; i<${#SPECIAL_SYMBOLS[@]}; i++))
-        # do
-        #     symbol=${SPECIAL_SYMBOLS[$i]}
-        #     out_symbol=
-        #     if [[ $symbol == '\n' || $symbol == '\r' ]]
-        #     then
-        #         out_symbol=$(errorEcho "Non visible")
-        #     fi
-        #     description="${SPECIAL_SYMBOLS_DESCRIPTION[$i]}"
-        #     printf "%d.\t%s\t%s\t%s\n" "$((i + 1))" "$symbol" "\"$out_symbol\"" "$(warningEcho "$description")"
-        # done
 
         printSpecialSymbols
         printf "Select symbol: "
         read -r option
         if [[ $option > ${#SPECIAL_SYMBOLS[@]} || $option -lt 1 ]]
         then 
+            clear
             errorEcho "Select one of the provided symbols!"
         else
             index=$((option - 1))
@@ -96,7 +83,13 @@ function addSpecialSymbol() {
             break
         fi
     done
-    echo "${symbol@P}"
+    # echo "${symbol@P}"
+    clear
+    selectColor "$symbol" choice_color
+    selectStyle "$symbol" "$choice_color" choice_style
+
+    addPiece "$line" "$symbol" "$choice_color" "$choice_style" "$SPEC_SYMB"
+    clear
 }
 
 function printSpecialSymbols() {

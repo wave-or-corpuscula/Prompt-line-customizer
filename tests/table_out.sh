@@ -34,7 +34,7 @@ for ((i = 0; i < ${#names[@]}; i++)); do
     max_lines=$(echo -e "$name_lines\n$age_lines\n$city_lines\n$occupation_lines" | wc -l)
 
     # Вывод строк таблицы построчно, пропуская строки без информации
-    for ((j = 1; j <= $max_lines; j++)); do
+    for ((j = 1; j <= "$max_lines"; j++)); do
         name_line=$(echo "$name_lines" | sed -n "${j}p")
         age_line=$(echo "$age_lines" | sed -n "${j}p")
         city_line=$(echo "$city_lines" | sed -n "${j}p")

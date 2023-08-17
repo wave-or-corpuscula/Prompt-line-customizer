@@ -40,11 +40,11 @@ function selectColor() {
     do
         for ((i=0; i<${#COLORS[@]}; i++))
         do
-            out=$(colorEcho "$text" "${COLORS[$i]}")
+            out=$(colorEcho "${text@P}" "${COLORS[$i]}")
             printf "%d. %s\n" "$((i + 1))" "${out@P}"
         done
 
-        printf "\Select color: "
+        printf "Select color: "
         read -r option
         if [[ $option > ${#COLORS[@]} || $option -lt 1 ]]
         then 
@@ -68,11 +68,11 @@ function selectStyle() {
     do
         for ((i=0; i<${#STYLES[@]}; i++))
         do
-            out=$(colorEcho "$text" "$color" "${STYLES[$i]}")
+            out=$(colorEcho "${text@P}" "$color" "${STYLES[$i]}")
             printf "%d. %s\n" "$((i + 1))" "${out@P}"
         done
 
-        printf "\Select style: "
+        printf "Select style: "
         read -r option
         if [[ $option > ${#STYLES[@]} || $option -lt 1 ]]
         then 
