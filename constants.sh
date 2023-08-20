@@ -35,7 +35,8 @@ COLORS=( "$BLACK" "$RED" "$GREEN"  "$YELLOW" "$BLUE" "$PURPLE" "$CYAN" "$WHITE" 
 STYLES=( "$RESET" "$BOLD" "$THICK" "$ITALIC" "$UNDERLINE" "$BLINK" "$REVERSE" "$HIDE" "$CROSS_OUT" )
 
 
-SPECIAL_SYMBOLS=('\d' '\D{format}' '\h' '\H' '\j' '\l' '\n' '\r' '\s' '\t' '\T' '\@' '\A' '\u' '\v' '\V' '\w' '\W' '\!' '\#' '\$' '\')
+# SPECIAL_SYMBOLS=('\d' '\D{format}' '\h' '\H' '\j' '\l' '\n' '\r' '\s' '\t' '\T' '\@' '\A' '\u' '\v' '\V' '\w' '\W' '\!' '\#' '\$' "\\" )
+SPECIAL_SYMBOLS=('\d' '\D{format}' '\h' '\H' '\j' '\l' '\n' '\r' '\s' '\t' '\T' '\@' '\A' '\u' '\v' '\V' '\w' '\W' '\!' '\#' '\$' )
 
 SPECIAL_SYMBOLS_DESCRIPTION=(
     'Date in the format "Day of week Month Date" (e.g. "Mon Nov 26")'
@@ -59,5 +60,5 @@ SPECIAL_SYMBOLS_DESCRIPTION=(
     'The team number in the team history (history).'
     'The number of the command in the current terminal session.'
     'Invitation character (# for root, $ for normal users).'
-    'The backslash symbol "\" .'
+    # 'The backslash symbol "\" .'
 )

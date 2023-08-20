@@ -14,15 +14,22 @@ function addSpecialSymbol() {
     
     while :
     do
-
+        
         # printSpecialSymbols
         simplePrintSpecialSymbols
         printf "Select symbol: "
         read -r option
 
-        if (( "$option" > ${#SPECIAL_SYMBOLS[@]} && "$option" < 1  ))
-        then 
+        if ! [[ "$option" =~ ^[0-9]+$ ]]
+        then
             clear
+            errorEcho "Your have to write positive number!"
+            continue
+        fi
+
+        if (( "$option" > ${#SPECIAL_SYMBOLS[@]}  || "$option" < 1 ))
+        then
+            clear 
             errorEcho "Select one of the provided symbols!"
         else
             index=$((option - 1))
