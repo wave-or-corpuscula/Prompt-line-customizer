@@ -26,13 +26,22 @@ addPiece test_2 "2" "$RED" "$BOLD"
 
 
 PromptLine test_3
+PromptLine test_4
+countPieces test_4
 
 addPiece test_3 "TestLine" "$CYAN" "$BOLD"
 addPiece test_3 "3" "$RED" "$BOLD"
 
 addLine ins test_1
+countPieces test_1
+
+
 addLine ins test_2
+countPieces test_2
+
+
 addLine ins test_3
+countPieces test_3
 
 printLines ins
 

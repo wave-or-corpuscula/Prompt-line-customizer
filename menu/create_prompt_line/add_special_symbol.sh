@@ -19,7 +19,8 @@ function addSpecialSymbol() {
         simplePrintSpecialSymbols
         printf "Select symbol: "
         read -r option
-        if [[ $option > ${#SPECIAL_SYMBOLS[@]} || $option -lt 1 ]]
+
+        if (( "$option" > ${#SPECIAL_SYMBOLS[@]} && "$option" < 1  ))
         then 
             clear
             errorEcho "Select one of the provided symbols!"
@@ -29,13 +30,41 @@ function addSpecialSymbol() {
             break
         fi
     done
-    # echo "${symbol@P}"
+    
     clear
+
+    if [[ $symbol == '\n' || $symbol == '\r' ]]
+    then
+        addPiece "$line" "$symbol" "$WHITE" "$RESET" "$SPEC_SYMB"
+        return 
+    fi
+
     selectColor "$symbol" choice_color
     selectStyle "$symbol" "$choice_color" choice_style
 
     addPiece "$line" "$symbol" "$choice_color" "$choice_style" "$SPEC_SYMB"
     clear
+}
+
+function simplePrintSpecialSymbols() {
+
+    for ((i = 0; i < ${#SPECIAL_SYMBOLS[@]}; i++)); 
+    do
+        number="$((i + 1))"
+        symbol="${SPECIAL_SYMBOLS[i]}"
+        out_symbol="${symbol@P}"
+        description="${SPECIAL_SYMBOLS_DESCRIPTION[$i]}"
+
+        if [[ $symbol == '\n' || $symbol == '\r' ]]
+        then
+            out_symbol=$(errorEcho "Non visible")
+        fi
+
+        out_symbol=$(successEcho "$out_symbol")
+        description=$(warningEcho "$description")
+
+        printf "%d.\t%s\t%s\t%s\n" "$number" "$symbol" "$out_symbol" "$description"
+    done
 }
 
 function printSpecialSymbols() {
@@ -83,26 +112,5 @@ function printSpecialSymbols() {
                 printf "%-5s \t %-12s \t %-20s \t %-20s \n" "$number_line" "$symbol_line" "${out_line@P}" "${description_line@P}"
             fi
         done
-    done
-}
-
-
-function simplePrintSpecialSymbols() {
-
-    for ((i = 0; i < ${#SPECIAL_SYMBOLS[@]}; i++)); do
-        number="$((i + 1))"
-        symbol="${SPECIAL_SYMBOLS[i]}"
-        out_symbol="${symbol@P}"
-        description="${SPECIAL_SYMBOLS_DESCRIPTION[$i]}"
-
-        if [[ $symbol == '\n' || $symbol == '\r' ]]
-        then
-            out_symbol=$(errorEcho "Non visible")
-        fi
-
-        out_symbol=$(successEcho "$out_symbol")
-        description=$(warningEcho "$description")
-
-        printf "%d.\t%s\t%s\t%s\n" "$number" "$symbol" "$out_symbol" "$description"
     done
 }

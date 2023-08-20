@@ -2,9 +2,12 @@
 
 
 DIR_NAME="$(dirname "$0")"
+source "$DIR_NAME"/constants.sh
+
 source "$DIR_NAME"/menu/create_prompt_line/add_text.sh
 source "$DIR_NAME"/menu/create_prompt_line/add_special_symbol.sh
-source "$DIR_NAME"/constants.sh
+
+source "$DIR_NAME"/menu/create_prompt_line/change_line/change_line.sh
 
 
 function createPromptLine {
@@ -40,11 +43,11 @@ function createPromptLine {
             ;;
         "3")
             clear
-            addEnvironmentVariable
+            addEnvironmentVariable $prompt_line_name
             ;;
         "4")
             clear
-            changeLine
+            changeLine $prompt_line_name
             ;;
         "5")
             clear
@@ -61,4 +64,21 @@ function createPromptLine {
         esac
     done
 }
+
+function addEnvironmentVariable() {
+    local line=$1
+
+    echo -n "Type your environmental variable: "
+    read -r env_var
+    clear
+
+    value=$(printenv "$env_var")
+
+    if [ -z "$value" ]; then
+        errorEcho "Environmental variable '$env_var' dosen't exists or don't have any value."
+    else
+        echo "Environmental variable value '$env_var': $value"
+    fi
+}
+
 

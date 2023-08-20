@@ -53,6 +53,12 @@ function swapPieces() {
     swapArray "${obj["pieces"]}" "$2" "$3"
 }
 
+function countPieces() {
+    local -n "obj"="$1"
+    local -n "pieces"="${obj["pieces"]}"
+    echo "${#pieces[@]}"
+}
+
 # Prints full prompt line
 function getLine() {
     local -n "obj"="$1"

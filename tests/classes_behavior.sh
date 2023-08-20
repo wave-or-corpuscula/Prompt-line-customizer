@@ -5,7 +5,7 @@ source "$(dirname $0)"/../constants.sh
 source "$(dirname $0)"/../classes/PromptPiece.sh
 
 
-declare -A piece
+# declare -A piece
 PromptPiece piece test_text "$GREEN"
 
 print_piece="$( getPiece piece )"
