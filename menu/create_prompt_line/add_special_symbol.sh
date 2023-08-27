@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# DIR_NAME="$(dirname "$0")"
-# source "$DIR_NAME"/menu/create_prompt_line/add_text.sh
-# source "$DIR_NAME"/constants.sh
-# source "$DIR_NAME"/functions.sh
-
 
 function addSpecialSymbol() {
     local line=$1

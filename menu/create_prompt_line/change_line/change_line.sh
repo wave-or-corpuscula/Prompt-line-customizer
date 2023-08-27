@@ -5,10 +5,12 @@ DIR_NAME="$(dirname "$0")"
 source "$DIR_NAME"/constants.sh
 source "$DIR_NAME"/functions.sh
 
+source "$DIR_NAME"/menu/create_prompt_line/change_line/change_color.sh
+
 
 function changeLine() {
     local line=$1
-    local pieces_amount
+    # local pieces_amount
     pieces_amount=$(countPieces "$line")
 
     if [[ $pieces_amount == 0 ]]
@@ -19,21 +21,7 @@ function changeLine() {
 
     while :
     do
-        while :
-        do
-
-            getLineList "$line"
-            printf "Select piece for change: "
-            read -r selected_index
-            if [[ $selected_index -lt 0 || $selected_index > $pieces_amount ]]
-            then
-                clear
-                errorEcho "Select one of the provided pieces!"
-            else
-                break
-            fi
-        done
-
+        printf "This is your prompt line: %s\n\n" "$(getLine "$line")"
 
         printf "What do you want to change?\n1.Change color\n2.Change style\n3.Change type\n4.Move piece\n5.%s\n6.Back\n" "$(errorEcho "Delete piece")"
         read -r option
@@ -42,7 +30,7 @@ function changeLine() {
 
         "1") 
             clear
-            changeColor
+            changeColor "$line"
             ;;
         "2") 
             clear

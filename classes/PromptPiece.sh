@@ -27,7 +27,7 @@ function PromptPiece() {
 }
 
 function validate() {
-    local -n "obj"="$1"
+    local -n obj=$1
 
     if [[ "${obj["type"]}" != "$SPEC_SYMB" && "${obj["text"]}" == *"\\"* ]]
     then
@@ -37,12 +37,31 @@ function validate() {
 }
 
 function getPiece() {
-    local -n "obj"="$1"
+    local -n obj=$1
     promptColorEcho "${obj["text"]}" "${obj["color"]}" "${obj["style"]}" 
 }
 
+function getPiecePart() {
+    local -n obj=$1; shift
+    local flag=$1
+    case "$flag" in
+        '-t'|'--text')
+            echo "${obj["text"]}"
+            ;;
+        '-c'|'--color')
+            echo "${obj["color"]}"
+            ;;
+        '-s'|'--style')
+            echo "${obj["style"]}"
+            ;;
+        '-T'|'--type')
+            echo "${obj["type"]}"
+            ;;
+    esac
+}
+
 function changePiece() {
-    local -n "obj"="$1"; shift
+    local -n obj=$1; shift
 
     while [[ $# -gt 0 ]]; do
         local flag=$1

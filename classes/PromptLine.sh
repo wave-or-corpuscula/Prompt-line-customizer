@@ -38,10 +38,20 @@ function addPiece() {
     return "$?"
 }
 
+function getLinePiecePart() {
+    local -n obj=$1
+    local -n pieces="${obj["pieces"]}"
+    local change_ind=$2
+    local flag=$3
+
+    info=$( getPiecePart "${pieces[$change_ind]}" "$flag" )
+    echo "$info"
+}
+
 # Change piece parameters by provided index
 function changeLinePiece() {
-    local -n "obj"="$1"
-    local -n "pieces"="${obj["pieces"]}"
+    local -n obj=$1
+    local -n pieces="${obj["pieces"]}"
     local change_ind=$2
     shift; shift
 

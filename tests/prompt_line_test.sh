@@ -16,11 +16,14 @@ addPiece test_p "очень" "$YELLOW" "$BOLD"
 addPiece test_p "нравится" "$PURPLE" "$BOLD"
 addPiece test_p "все" "$CYAN" "$BOLD"
 addPiece test_p "происходящее" "$WHITE" "$BOLD"
-addPiece test_p "агась" "$WHITE" "$BOLD"
+addPiece test_p "агась" "$BLACK" "$BOLD"
 
-# getLine test_p
+getLine test_p
 
-getLineList test_p
+# getLineList test_p
+
+text=$(getPieceInfo test_p 6 -c)
+echo "$text"
 
 # swapPieces test_p 0 3
 
@@ -40,6 +43,6 @@ addPiece test_p1 "угусь" "$YELLOW" "$ITALIC"
 
 # getLine test_p1
 
-getLineList test_p1
+# getLineList test_p1
 
-getLineList test_p
+# getLineList test_p
