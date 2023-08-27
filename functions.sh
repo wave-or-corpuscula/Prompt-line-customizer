@@ -112,6 +112,78 @@ function selectStyle() {
     done
 }
 
+function inputText() {
+    local -n text_
+    while :
+    do
+        printf "Enter your text: "
+        read -r input_text
+        if [[ $input_text == *"\\"* ]]
+        then
+            clear
+            errorEcho "Backslashes are not allowed in text type pieces!"
+        elif [[ $input_text == "" ]]
+        then
+            clear
+            errorEcho "Text have to be visible!"
+        else
+            text=$input_text
+            break
+        fi
+    done
+}
+
+function inputSpecialSymbol() {
+    local -n symbol_=$1
+
+    while :
+    do
+        
+        # printSpecialSymbols
+        simplePrintSpecialSymbols
+        printf "Select symbol: "
+        read -r option
+
+        if ! [[ "$option" =~ ^[0-9]+$ ]]
+        then
+            clear
+            errorEcho "Your have to write positive number!"
+            continue
+        fi
+
+        if (( "$option" > ${#SPECIAL_SYMBOLS[@]}  || "$option" < 1 ))
+        then
+            clear 
+            errorEcho "Select one of the provided symbols!"
+        else
+            index="$((option - 1))"
+            symbol_="${SPECIAL_SYMBOLS[$index]}"
+            break
+        fi
+    done
+}
+
+function simplePrintSpecialSymbols() {
+
+    for ((i = 0; i < ${#SPECIAL_SYMBOLS[@]}; i++)); 
+    do
+        number="$((i + 1))"
+        symbol="${SPECIAL_SYMBOLS[i]}"
+        out_symbol="${symbol@P}"
+        description="${SPECIAL_SYMBOLS_DESCRIPTION[$i]}"
+
+        if [[ $symbol == '\n' || $symbol == '\r' ]]
+        then
+            out_symbol=$(errorEcho "Non visible")
+        fi
+
+        out_symbol=$(successEcho "$out_symbol")
+        description=$(warningEcho "$description")
+
+        printf "%d.\t%s\t%s\t%s\n" "$number" "$symbol" "$out_symbol" "$description"
+    done
+}
+
 # <--@ Creating prompt line @-->
 
 

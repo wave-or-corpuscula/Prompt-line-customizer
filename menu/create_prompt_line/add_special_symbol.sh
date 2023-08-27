@@ -6,34 +6,10 @@ function addSpecialSymbol() {
     local symbol=""
     local choice_color=""
     local choice_style=""
-    
-    while :
-    do
-        
-        # printSpecialSymbols
-        simplePrintSpecialSymbols
-        printf "Select symbol: "
-        read -r option
 
-        if ! [[ "$option" =~ ^[0-9]+$ ]]
-        then
-            clear
-            errorEcho "Your have to write positive number!"
-            continue
-        fi
-
-        if (( "$option" > ${#SPECIAL_SYMBOLS[@]}  || "$option" < 1 ))
-        then
-            clear 
-            errorEcho "Select one of the provided symbols!"
-        else
-            index=$((option - 1))
-            symbol="${SPECIAL_SYMBOLS[$index]}"
-            break
-        fi
-    done
-    
+    inputSpecialSymbol symbol
     clear
+    
 
     if [[ $symbol == '\n' || $symbol == '\r' ]]
     then
@@ -46,27 +22,6 @@ function addSpecialSymbol() {
 
     addPiece "$line" "$symbol" "$choice_color" "$choice_style" "$SPEC_SYMB"
     clear
-}
-
-function simplePrintSpecialSymbols() {
-
-    for ((i = 0; i < ${#SPECIAL_SYMBOLS[@]}; i++)); 
-    do
-        number="$((i + 1))"
-        symbol="${SPECIAL_SYMBOLS[i]}"
-        out_symbol="${symbol@P}"
-        description="${SPECIAL_SYMBOLS_DESCRIPTION[$i]}"
-
-        if [[ $symbol == '\n' || $symbol == '\r' ]]
-        then
-            out_symbol=$(errorEcho "Non visible")
-        fi
-
-        out_symbol=$(successEcho "$out_symbol")
-        description=$(warningEcho "$description")
-
-        printf "%d.\t%s\t%s\t%s\n" "$number" "$symbol" "$out_symbol" "$description"
-    done
 }
 
 function printSpecialSymbols() {

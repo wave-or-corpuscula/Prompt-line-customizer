@@ -6,6 +6,8 @@ source "$DIR_NAME"/constants.sh
 source "$DIR_NAME"/functions.sh
 
 source "$DIR_NAME"/menu/create_prompt_line/change_line/change_color.sh
+source "$DIR_NAME"/menu/create_prompt_line/change_line/change_style.sh
+source "$DIR_NAME"/menu/create_prompt_line/change_line/move_piece.sh
 
 
 function changeLine() {
@@ -38,11 +40,11 @@ function changeLine() {
             ;;
         "3") 
             clear
-            changeType
+            changeType "$line"
             ;;
         "4") 
             clear
-            movePiece
+            movePiece "$line"
             ;;
         "5") 
             clear
@@ -59,21 +61,3 @@ function changeLine() {
         esac
     done
 }
-
-function changeStyle() {
-    local line=$1
-    local piece_index=0
-    local new_style=""
-    selectLinePiece "$line" piece_index
-
-    clear
-    color=$(getLinePiecePart "$line" "$piece_index" -c )
-    text=$(getLinePiecePart "$line" "$piece_index" -t )
-    selectStyle "$text" "$color" new_style
-
-    changeLinePiece "$line" "$piece_index" -s "$new_style"
-
-    clear
-    successEcho "Style had been changed!\n" 
-}
-
