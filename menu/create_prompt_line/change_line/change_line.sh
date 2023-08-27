@@ -34,7 +34,7 @@ function changeLine() {
             ;;
         "2") 
             clear
-            changeStyle
+            changeStyle "$line"
             ;;
         "3") 
             clear
@@ -59,3 +59,21 @@ function changeLine() {
         esac
     done
 }
+
+function changeStyle() {
+    local line=$1
+    local piece_index=0
+    local new_style=""
+    selectLinePiece "$line" piece_index
+
+    clear
+    color=$(getLinePiecePart "$line" "$piece_index" -c )
+    text=$(getLinePiecePart "$line" "$piece_index" -t )
+    selectStyle "$text" "$color" new_style
+
+    changeLinePiece "$line" "$piece_index" -s "$new_style"
+
+    clear
+    successEcho "Style had been changed!\n" 
+}
+
