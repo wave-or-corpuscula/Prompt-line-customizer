@@ -38,7 +38,6 @@ function main_menu() {
             ;;
         "5")
             clear
-            printf 'Come back later!\n'
             exit
             ;;
         *)

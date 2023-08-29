@@ -94,3 +94,12 @@ function getLineList() {
     done
     echo
 }
+
+
+function deletePiece() {
+    local -n "obj"="$1"
+    local del_index=$2
+    local -n "pieces"="${obj["pieces"]}"
+
+    unset "pieces[$del_index]"
+}
