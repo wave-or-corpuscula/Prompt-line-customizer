@@ -48,7 +48,7 @@ function changeLine() {
             ;;
         "5") 
             clear
-            deletePiece
+            deletePieceFromLine "$line"
             ;;
         "6") 
             clear
@@ -60,4 +60,16 @@ function changeLine() {
             ;;
         esac
     done
+}
+
+
+function deletePieceFromLine() {
+    local line=$1
+    local piece_index=0
+
+    selectLinePiece "$line" piece_index "Select piece for deleting:"
+    deletePiece "$line" "$piece_index"
+
+    clear
+    successEcho "Piece deleted!"
 }

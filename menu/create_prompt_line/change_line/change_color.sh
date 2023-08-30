@@ -5,7 +5,7 @@ function changeColor() {
     local line=$1
     local piece_index=0
     local new_color=""
-    selectLinePiece "$line" piece_index
+    selectLinePiece "$line" piece_index "Select piece for changing:"
 
     clear
     text=$(getLinePiecePart "$line" "$piece_index" -t )

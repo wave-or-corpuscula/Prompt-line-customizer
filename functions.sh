@@ -113,7 +113,7 @@ function selectStyle() {
 }
 
 function inputText() {
-    local -n text_
+    local -n text_=$1
     while :
     do
         printf "Enter your text: "
@@ -127,7 +127,7 @@ function inputText() {
             clear
             errorEcho "Text have to be visible!"
         else
-            text=$input_text
+            text_=$input_text
             break
         fi
     done
@@ -192,11 +192,11 @@ function simplePrintSpecialSymbols() {
 function selectLinePiece() {
     local line=$1
     local -n index_=$2
+    local message=$3
     while :
         do
-            clear 
             getLineList "$line"
-            printf "Select piece for change: "
+            printf "%s\n" "$message"
             read -r selected_index
             if [[ $selected_index -lt 1 || $selected_index > $pieces_amount ]]
             then

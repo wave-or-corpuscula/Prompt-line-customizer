@@ -8,7 +8,7 @@ function movePiece() {
     local -n pieces="${line_ref["pieces"]}"
     local pieces_amount=$(countPieces "$line")
 
-    selectLinePiece "$line" piece_index
+    selectLinePiece "$line" piece_index "Select piece for moveing:"
     echo "$piece_index"
     clear
     while :
