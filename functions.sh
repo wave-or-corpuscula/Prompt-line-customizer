@@ -193,20 +193,37 @@ function selectLinePiece() {
     local line=$1
     local -n index_=$2
     local message=$3
+    local back_flag=${4:-"false"}
+
+    pieces_amount=$(countPieces "$line")
+
+    if [ "$back_flag" = "true" ]
+    then
+        pieces_amount+=1
+    fi
+
     while :
-        do
-            getLineList "$line"
-            printf "%s\n" "$message"
-            read -r selected_index
-            if [[ $selected_index -lt 1 || $selected_index > $pieces_amount ]]
-            then
-                clear
-                errorEcho "Select one of the provided pieces!"
-            else
-                index_=$((selected_index - 1))
-                break
-            fi
-        done
+    do
+        getLineList "$line"
+
+      if [ "$back_flag" = "true" ]
+        then
+            printf "%d. Back" "$((pieces_amount - 1))"
+        fi  
+        printf "%s\n" "$message"
+        read -r selected_index
+        if [[ $selected_index -lt 1 || $selected_index > $pieces_amount ]]
+        then
+
+            if [ $selected_index = pieces_amount ]
+
+            clear
+            errorEcho "Select one of the provided pieces!"
+        else
+            index_=$((selected_index - 1))
+            break
+        fi
+    done
 }
 
 # <--@ Changing prompt line @-->

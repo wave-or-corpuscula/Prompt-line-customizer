@@ -101,5 +101,5 @@ function deletePiece() {
     local del_index=$2
     local -n "pieces"="${obj["pieces"]}"
 
-    unset "pieces[$del_index]"
+    pieces=( "${pieces[@]:0:$del_index}" "${pieces[@]:$((del_index + 1))}" )
 }
