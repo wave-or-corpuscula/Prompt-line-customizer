@@ -67,24 +67,14 @@ function deletePieceFromLine() {
     local line=$1
     local piece_index=0
 
-    # selectLinePiece "$line" piece_index 
-    pieces_amount=$(countPieces "$line")
+    selectLinePiece "$line" piece_index "Select piece for deleting:" "pieces" "true"
 
-    while :
-    do
-        getLineList "$line"
-        printf "%s\n" "Select piece for deleting:"
-        read -r selected_index
-        if [[ $selected_index -lt 1 || $selected_index > $pieces_amount ]]
-        then
-            clear
-            errorEcho "Select one of the provided pieces!"
-        else
-            index_=$((selected_index - 1))
-            break
-        fi
-    done
-
+    if [[ $piece_index == -1 ]]
+    then
+        clear
+        errorEcho "Deleting canceled!"
+        return
+    fi
 
     deletePiece "$line" "$piece_index"
 

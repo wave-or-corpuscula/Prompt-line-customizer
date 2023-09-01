@@ -92,7 +92,6 @@ function getLineList() {
         print_piece="$( getPiece "${pieces[$i]}" )"
         printf "%d. %s\n" "$((i + 1))" "${print_piece@P}"
     done
-    echo
 }
 
 

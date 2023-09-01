@@ -193,13 +193,14 @@ function selectLinePiece() {
     local line=$1
     local -n index_=$2
     local message=$3
-    local back_flag=${4:-"false"}
+    local choosing_things=$4
+    local back_flag=${5:-"false"}
 
     pieces_amount=$(countPieces "$line")
 
     if [ "$back_flag" = "true" ]
     then
-        pieces_amount+=1
+        pieces_amount=$((pieces_amount + 1))
     fi
 
     while :
@@ -208,18 +209,20 @@ function selectLinePiece() {
 
       if [ "$back_flag" = "true" ]
         then
-            printf "%d. Back" "$((pieces_amount - 1))"
+            printf "%d. Back\n\n" "$pieces_amount"
         fi  
-        printf "%s\n" "$message"
+        printf "%s " "$message"
         read -r selected_index
-        if [[ $selected_index -lt 1 || $selected_index > $pieces_amount ]]
+        if [[ $selected_index -lt 1 || $selected_index -gt $pieces_amount ]]
         then
-
-            if [ $selected_index = pieces_amount ]
-
             clear
-            errorEcho "Select one of the provided pieces!"
+            errorEcho "Select one of the provided $choosing_things!"
         else
+            if [ "$selected_index" = "$pieces_amount" ]
+            then
+                index_=-1
+                break
+            fi
             index_=$((selected_index - 1))
             break
         fi
