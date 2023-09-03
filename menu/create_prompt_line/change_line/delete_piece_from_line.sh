@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 function deletePieceFromLine() {
     local line=$1
     local piece_index=0

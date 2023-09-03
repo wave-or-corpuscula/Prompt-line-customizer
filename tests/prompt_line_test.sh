@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 DIR_NAME=$(dirname "$0")
 
 source "$DIR_NAME"/../classes/PromptLine.sh

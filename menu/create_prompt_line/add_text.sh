@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 function addText() {
     local line=$1
     local text=""

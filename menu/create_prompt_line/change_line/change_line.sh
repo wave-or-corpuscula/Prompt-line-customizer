@@ -26,7 +26,7 @@ function changeLine() {
         printf "This is your prompt line: %s\n\n" "$(getLine "$line")"
 
         printf "What do you want to change?\n1.Change color\n2.Change style\n3.Change type\n4.Move piece\n5.%s\n6.Back\n" "$(errorEcho "Delete piece")"
-        printf "Select an option: "
+        printf "\nSelect an option: "
         read -r option
 
         case "$option" in
@@ -41,23 +41,19 @@ function changeLine() {
             ;;
         "3") 
             clear
-            changeType "$line"
+            movePiece "$line"
             ;;
         "4") 
             clear
-            movePiece "$line"
-            ;;
-        "5") 
-            clear
             deletePieceFromLine "$line"
             ;;
-        "6") 
+        "5") 
             clear
             break
             ;;
         *)
             clear
-            errorEcho 'Invalid choice, choose one of the following!!!'
+            errorEcho 'Invalid choice, choose one of the following!'
             ;;
         esac
     done

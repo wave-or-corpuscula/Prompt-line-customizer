@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # Colors
 BLACK='30'
 RED='31'

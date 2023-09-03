@@ -71,7 +71,7 @@ function selectColor() {
             printf "%d. %s\n" "$((i + 1))" "${out@P}"
         done
 
-        printf "Select color: "
+        printf "\nSelect color: "
         read -r option
         if [[ $option > ${#COLORS[@]} || $option -lt 1 ]]
         then 
@@ -100,7 +100,7 @@ function selectStyle() {
             printf "%d. %s\n" "$((i + 1))" "${out@P}"
         done
 
-        printf "Select style: "
+        printf "\nSelect style: "
         read -r option
         if [[ $option > ${#STYLES[@]} || $option -lt 1 ]]
         then 
@@ -210,14 +210,14 @@ function selectLinePiece() {
 
       if [ "$back_flag" = "true" ]
         then
-            printf "%d. Back\n\n" "$pieces_amount"
+            printf "%d. %s\n\n" "$pieces_amount" "$(errorEcho Back)"
         fi  
         printf "%s " "$message"
         read -r selected_index
         if [[ $selected_index -lt 1 || $selected_index -gt $pieces_amount ]]
         then
             clear
-            errorEcho "Select one of the provided $choosing_things!"
+            errorEcho "Select one of the provided $choosing_things!\n"
         else
             if [ "$selected_index" = "$pieces_amount" ]
             then

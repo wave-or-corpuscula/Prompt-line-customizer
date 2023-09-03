@@ -23,9 +23,11 @@ function createPromptLine {
     local prompt_line_name="line_$line_number"
     PromptLine $prompt_line_name
 
-    addPiece $prompt_line_name "Test" "$YELLOW" "$BOLD"
-    addPiece $prompt_line_name "Line" "$WHITE" "$BOLD"
-    addPiece $prompt_line_name "Yes" "$RED" "$BOLD"
+    addPiece $prompt_line_name "This" "$YELLOW" "$BOLD"
+    addPiece $prompt_line_name "Is" "$WHITE" "$ITALIC"
+    addPiece $prompt_line_name "Line" "$MAGENTA" "$THICK"
+    addPiece $prompt_line_name "For" "$GREEN" "$UNDERLINE"
+    addPiece $prompt_line_name "Testing" "$PURPLE" "$CROSS_OUT"
 
     while :
     do  
@@ -64,7 +66,7 @@ function createPromptLine {
             ;;
         *)
             clear
-            errorEcho 'Invalid choice, choose one of the following!!!'
+            errorEcho 'Invalid choice, choose one of the following!'
             ;;
         esac
     done

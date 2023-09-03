@@ -17,7 +17,6 @@ PromptManager() {
     obj["lines"]="$lines"
 }
 
-
 function addLine() {
     local objn=$1
     local -n "obj"="$objn"

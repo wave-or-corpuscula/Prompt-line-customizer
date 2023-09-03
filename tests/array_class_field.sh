@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 source constants.sh
 
 # for symbol in "${SPECIAL_SYMBOLS[@]}"

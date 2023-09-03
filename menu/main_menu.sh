@@ -1,5 +1,6 @@
 #!/bin/bash -i
 
+
 DIR_NAME="$(dirname "$0")"
 source "$DIR_NAME"/constants.sh
 source "$DIR_NAME"/functions.sh
@@ -15,7 +16,7 @@ function main_menu() {
     while :
     do  
         printf "Select an option:\n1.Display current promt line\n2.Create new promt line\n3.Change promt line\n4.Open my lines\n5.Exit\n"
-        printf 'Enter your choice: '
+        printf '\nEnter your choice: '
         read -r option
 
         case $option in
@@ -42,7 +43,7 @@ function main_menu() {
             ;;
         *)
             clear
-            errorEcho 'Invalid choice, choose one of the following!!!'
+            errorEcho 'Invalid choice, choose one of the following!'
             ;;
         esac
     done
