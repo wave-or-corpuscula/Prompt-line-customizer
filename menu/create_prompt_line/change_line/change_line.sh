@@ -25,7 +25,7 @@ function changeLine() {
     do
         printf "This is your prompt line: %s\n\n" "$(getLine "$line")"
 
-        printf "What do you want to change?\n1.Change color\n2.Change style\n3.Change type\n4.Move piece\n5.%s\n6.Back\n" "$(errorEcho "Delete piece")"
+        printf "What do you want to change?\n1.Change color\n2.Change style\n3.Move piece\n4.%s\n5.Back\n" "$(errorEcho "Delete piece")"
         printf "\nSelect an option: "
         read -r option
 

@@ -54,10 +54,10 @@ function getIncreaseTotalAmount() {
 function getLinePiecePart() {
     local -n "obj"="$1"
     local -n "pieces"="${obj["pieces"]}"
-    local change_ind=$2
+    local get_index=$2
     local flag=$3
 
-    info=$( getPiecePart "${pieces[$change_ind]}" "$flag" )
+    info=$( getPiecePart "${pieces[$get_index]}" "$flag" )
     echo "$info"
 }
 

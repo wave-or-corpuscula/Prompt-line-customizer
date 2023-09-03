@@ -46,7 +46,6 @@ function getLinesArr() {
     for line_name in "${lines[@]}"
     do
         line=$(getLine "$line_name")
-        # echo "$line ofo"
         return_lines_arr+=("$line")
     done
     echo return_lines_arr

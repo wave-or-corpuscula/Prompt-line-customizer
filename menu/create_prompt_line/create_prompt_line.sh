@@ -32,7 +32,7 @@ function createPromptLine {
     while :
     do  
 
-        printf "Created prompt line: %s\n" "$(getLine "line_$line_number")"
+        printf "Created prompt line: %s\n\n" "$(getLine "line_$line_number")"
 
         printf "Select an option: \n1.Add text\n2.Add special symbol\n3.Add enveronment variable\n4.Change line\n5.Save line\n6.Back\n\n"
         printf 'Enter your choice: '
@@ -58,7 +58,7 @@ function createPromptLine {
             ;;
         "5")
             clear
-            saveLine
+            saveLine $prompt_line_name
             ;;
         "6")
             clear
@@ -70,4 +70,28 @@ function createPromptLine {
             ;;
         esac
     done
+}
+
+
+function saveLine() {
+    local line=$1
+    local -n line_ref=$line
+    pieces_count=$(countPieces "$line")
+    
+    local name="${line_ref["name"]}"
+    local save_file="config/saved_lines/$name"
+
+    echo -n "" > "$save_file"
+    for ((i=0; i < "$pieces_count"; i++))
+    do
+        text=$(getLinePiecePart "$line" $i -t )
+        color=$(getLinePiecePart "$line" $i -c )
+        style=$(getLinePiecePart "$line" $i -s )
+        type=$(getLinePiecePart "$line" $i -T )
+
+        echo "$text $color $style $type" >> "$save_file"
+    done
+
+    getLinePiecePart "$line"
+
 }
