@@ -20,6 +20,7 @@ addPiece test_p "агась" "$BLACK" "$BOLD"
 
 getLine test_p
 
-deletePiece test_p 3
+deletePiece test_p 0
+addPiece test_p "Мне" "$GREEN" "$BOLD"
 
 getLineList test_p

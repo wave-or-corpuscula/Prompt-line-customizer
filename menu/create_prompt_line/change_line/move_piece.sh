@@ -9,7 +9,7 @@ function movePiece() {
     local pieces_amount=$(countPieces "$line")
 
     selectLinePiece "$line" piece_index "Select piece for moveing:"
-    echo "$piece_index"
+    # echo "$piece_index"
     clear
     while :
     do
@@ -17,7 +17,7 @@ function movePiece() {
         for ((i=0; i<${#pieces[@]}; i++))
         do 
             print_piece="$( getPiece "${pieces[$i]}" )"
-            if [[ $i == $piece_index ]]
+            if [[ "$i" == "$piece_index" ]]
             then
                 echo "-> ${print_piece@P}" 
             else
@@ -27,7 +27,7 @@ function movePiece() {
 
         escape_char=$(printf "\u1b")
         read -rsn1 mode # get 1 character
-        if [[ $mode == $escape_char ]]; then
+        if [[ "$mode" == "$escape_char" ]]; then
             read -rsn2 mode # read 2 more chars
         fi
         case $mode in

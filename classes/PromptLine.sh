@@ -11,12 +11,13 @@ function PromptLine() {
     local objn=$1
     local prompt_name=${2:-"pieces_values_of_$objn"}
     declare -gA "$objn"
-    local -n obj=$objn
+    local -n obj="$objn"
     local pieces="pieces_of_$objn"
     declare -ga "$pieces"
 
     obj["pieces"]="$pieces"
-    obj["name"]=$prompt_name
+    obj["name"]="$prompt_name"
+    obj["total_amount"]=0
 }
 
 # Adds piece to the end of prompt line
@@ -30,7 +31,10 @@ function addPiece() {
     local type_=${5:-"$TEXT"}
     local -n pieces="${obj["pieces"]}"
 
-    local piece_name="piece${#pieces[@]}_of_$objn"
+    local total_amount=0
+    getIncreaseTotalAmount "$objn" total_amount
+
+    local piece_name="piece_${total_amount}_of_$objn"
     PromptPiece "$piece_name" "$text_" "$color_" "$style_" "$type_"
 
     pieces+=("$piece_name")
@@ -38,9 +42,17 @@ function addPiece() {
     return "$?"
 }
 
+function getIncreaseTotalAmount() {
+    local -n "obj"="$1"
+    local -n total_amount_=$2
+    local amount="${obj["total_amount"]}"
+    total_amount_=$amount
+    obj["total_amount"]=$((amount + 1))
+}
+
 function getLinePiecePart() {
-    local -n obj=$1
-    local -n pieces="${obj["pieces"]}"
+    local -n "obj"="$1"
+    local -n "pieces"="${obj["pieces"]}"
     local change_ind=$2
     local flag=$3
 
@@ -50,8 +62,8 @@ function getLinePiecePart() {
 
 # Change piece parameters by provided index
 function changeLinePiece() {
-    local -n obj=$1
-    local -n pieces="${obj["pieces"]}"
+    local -n "obj"="$1"
+    local -n "pieces"="${obj["pieces"]}"
     local change_ind=$2
     shift; shift
 
@@ -100,5 +112,11 @@ function deletePiece() {
     local del_index=$2
     local -n "pieces"="${obj["pieces"]}"
 
+    local -n piece="${pieces[$del_index]}"
+    echo "${piece["text"]}"
+
     pieces=( "${pieces[@]:0:$del_index}" "${pieces[@]:$((del_index + 1))}" )
+
+    local -n piece="${pieces[$del_index]}"
+    echo "${piece["text"]}"
 }

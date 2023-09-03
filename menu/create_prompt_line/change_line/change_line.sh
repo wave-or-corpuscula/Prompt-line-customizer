@@ -8,11 +8,11 @@ source "$DIR_NAME"/functions.sh
 source "$DIR_NAME"/menu/create_prompt_line/change_line/change_color.sh
 source "$DIR_NAME"/menu/create_prompt_line/change_line/change_style.sh
 source "$DIR_NAME"/menu/create_prompt_line/change_line/move_piece.sh
+source "$DIR_NAME"/menu/create_prompt_line/change_line/delete_piece_from_line.sh
 
 
 function changeLine() {
     local line=$1
-    # local pieces_amount
     pieces_amount=$(countPieces "$line")
 
     if [[ $pieces_amount == 0 ]]
@@ -26,6 +26,7 @@ function changeLine() {
         printf "This is your prompt line: %s\n\n" "$(getLine "$line")"
 
         printf "What do you want to change?\n1.Change color\n2.Change style\n3.Change type\n4.Move piece\n5.%s\n6.Back\n" "$(errorEcho "Delete piece")"
+        printf "Select an option: "
         read -r option
 
         case "$option" in
@@ -60,24 +61,4 @@ function changeLine() {
             ;;
         esac
     done
-}
-
-
-function deletePieceFromLine() {
-    local line=$1
-    local piece_index=0
-
-    selectLinePiece "$line" piece_index "Select piece for deleting:" "pieces" "true"
-
-    if [[ $piece_index == -1 ]]
-    then
-        clear
-        errorEcho "Deleting canceled!"
-        return
-    fi
-
-    deletePiece "$line" "$piece_index"
-
-    clear
-    successEcho "Piece deleted!"
 }

@@ -75,6 +75,7 @@ function selectColor() {
         read -r option
         if [[ $option > ${#COLORS[@]} || $option -lt 1 ]]
         then 
+            clear
             errorEcho "Select one of the provided colors!"
         else
             index=$((option - 1))

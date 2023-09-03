@@ -5,7 +5,7 @@ function changeStyle() {
     local line=$1
     local piece_index=0
     local new_style=""
-    selectLinePiece "$line" piece_index
+    selectLinePiece "$line" piece_index "Select new style:" styles
 
     clear
     color=$(getLinePiecePart "$line" "$piece_index" -c )
